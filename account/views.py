@@ -6,20 +6,15 @@ from . models import ex,emp,cards
 # Create your views here.
 
 datas={'ex':ex,'emp':emp,'cards':cards}
-@never_cache
-def login(request):
-    if request.session.has_key('key'):
-        return render(request,'index.html',datas)
-    else:
-        return render(request,'login.html')
+
     
 @never_cache  
-def home(request):
+def login(request):
     if request.session.has_key('key'):
         # cookie = Session.objects.get(session_key=request.COOKIES.get('key'))
         # data = cookie.get_decoded()
         # if data.get('key') != request.session['key']:
-            return redirect('login')
+            return redirect('/home')
     else:
         if request.method=='POST': 
             username = request.POST['username']
@@ -27,13 +22,18 @@ def home(request):
             if username=='admin' and password=='1234':
                 request.session['key']='value'
         
-                return redirect('login')
+                return redirect('/home')
             else:
                 messages.error(request,'invalid username or password')
                 return redirect('/')
         else:
-            return redirect('/')
-
+            return render(request,'login.html')
+@never_cache
+def home(request):
+    if request.session.has_key('key'):
+        return render(request,'index.html',datas)
+    else:
+        return redirect('login')
 @never_cache  
 def logout(request):
     if request.session.has_key('key'):

@@ -19,7 +19,7 @@
                 <p class="text-whitesmoke">Sign In</p>
             <div class="container-content">
                
-                <form id="myForm"  class="margin-t" action="{% url 'home' %}" method="POST">
+                <form id="myForm"  class="margin-t" action="{% url 'login' %}" method="POST">
                     {% csrf_token %}
                     <div class="form-group">
                         <input type="text" class="form-control" placeholder="Username"  name="username">
