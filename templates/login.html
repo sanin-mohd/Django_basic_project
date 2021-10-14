@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="{% static 'login.css' %}">
+    
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     
 </head>
@@ -18,13 +19,13 @@
                 <p class="text-whitesmoke">Sign In</p>
             <div class="container-content">
                
-                <form class="margin-t" action="{% url 'home' %}" method="POST">
+                <form id="myForm"  class="margin-t" action="{% url 'home' %}" method="POST">
                     {% csrf_token %}
                     <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Username" required="" name="username">
+                        <input type="text" class="form-control" placeholder="Username"  name="username">
                     </div>
                     <div class="form-group">
-                        <input type="password" class="form-control" placeholder="*****" required="" name="password">
+                        <input type="password" class="form-control" placeholder="*****"  name="password">
                     </div>
                     {% for x in messages %}
                     <h6 style="color:red" >{{x}}</h6>
@@ -38,7 +39,19 @@
                 <p class="margin-t text-whitesmoke"><small> Team Django &copy; 2021</small> </p>
             </div>
         </div>
-</body>
+        <style>
+            .error{
+                color: rgb(255, 0, 0) !important;
+            }
+        </style>
 
+</body>
+<script src="https://code.jquery.com/jquery-3.6.0.slim.min.js" integrity="sha256-u7e5khyithlIdTpu22PHhENmPcRdFiHRjhAuHcs05RI=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.3/dist/jquery.validate.js"></script>
+    <script src="{% static 'js/login.js' %}"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ"
+    crossorigin="anonymous"></script>
 
 </html>
